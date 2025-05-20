@@ -13,16 +13,21 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x']
+        os: [ubuntu-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    
+    - name: Setup .NET ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Restore dependencies for .NET ${{ matrix.dotnet-version }}
+      run: dotnet restore 
+    - name: Build with .NET ${{ matrix.dotnet-version }}
       run: dotnet build --no-restore
-    - name: Test
+    - name: Test with .NET ${{ matrix.dotnet-version }}
       run: dotnet test --no-build --verbosity normal
