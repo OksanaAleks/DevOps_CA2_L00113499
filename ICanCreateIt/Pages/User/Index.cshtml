@@ -1,0 +1,44 @@
+﻿@page
+@model ICanCreateIt.Pages.User.IndexModel
+@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<!-- User navigation bar section where they can manage their images-->
+@section UserNav {
+    <li class="nav-item">
+        <a class="nav-link btn btn-outline-info mx-1 px-3" asp-page="/User/UploadImage">Upload Image</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link btn btn-outline-warning mx-1 px-3" asp-page="/User/ManageImages">Manage Images</a>
+    </li>
+}
+
+<li class="nav-item">
+    <a class="nav-link btn btn-outline-warning mx-1 px-3" asp-page="/User/EditProfile">Manage Profile</a>
+</li>
+
+
+
+
+
+<h2 class="mt-4 text-info">Published Creations</h2>
+
+<!-- Display published images if there is any-->
+@if (Model.PublishedImages != null && Model.PublishedImages.Any())
+{
+    foreach (var image in Model.PublishedImages)
+    {
+        <div class="mb-4">
+            <img src="@image.FilePath" width="200" alt="User Image" class="img-thumbnail shadow-sm" />
+            <p class="text-light mt-2">@image.Description</p>
+        </div>
+    }
+}
+else
+{
+    
+    <div class="alert alert-secondary mt-3">
+        You haven’t shared any artwork yet. Start by uploading something awesome!
+    </div>
+}

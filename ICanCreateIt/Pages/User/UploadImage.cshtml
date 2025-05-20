@@ -1,0 +1,19 @@
+﻿@page
+@model ICanCreateIt.Pages.User.UploadImageModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Upload Your Creation here</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <label for="Upload">Choose an image to upload:</label>
+        <input type="file" id="Upload" name="Upload" />
+    </div>
+    <div>
+        <label for="Description">Description:</label>
+        <input type="text" id="Description" name="Description" />
+    </div>
+    <button type="submit">Upload</button>
+</form>

@@ -1,0 +1,110 @@
+﻿@page
+@model ICanCreateIt.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+@*If user is not registered yet they can register and add their own images or to accesss to their own dashboards*@
+
+<h2 class="mt-4">@ViewData["Title"]</h2>
+@*User will fill the form to register could be changed in the future *@
+<form method="post" class="mt-4">
+    <div class="mb-3">
+        <label asp-for="Input.Name" class="form-label"></label>
+        <input asp-for="Input.Name" class="form-control" />
+        <span asp-validation-for="Input.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Input.Email" class="form-label"></label>
+        <input asp-for="Input.Email" class="form-control" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Input.Password" class="form-label"></label>
+        <input asp-for="Input.Password" type="password" id="password" class="form-control" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+        <div id="password-error" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+        <input asp-for="Input.ConfirmPassword" type="password" id="confirm-password" class="form-control" />
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        <div id="confirm-password-error" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Input.Gender" class="form-label"></label>
+        <select asp-for="Input.Gender" class="form-select">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <span asp-validation-for="Input.Gender" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Input.DateOfBirth" class="form-label"></label>
+        <input asp-for="Input.DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordError = document.getElementById('password-error');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const confirmPasswordError = document.getElementById('confirm-password-error');
+        const passwordRules = {
+            requireDigit: true,
+            requireLowercase: true,
+            requireNonAlphanumeric: true,
+            requireUppercase: true,
+            minLength: 6
+        };
+
+        function validatePassword() {
+            let errorMessage = '';
+            let isValid = true;
+
+            if (passwordRules.requireDigit && !/\d/.test(this.value)) {
+                errorMessage += 'Password must contain a digit.<br>';
+                isValid = false;
+            }
+            if (passwordRules.requireLowercase && !/[a-z]/.test(this.value)) {
+                errorMessage += 'Password must contain a lowercase letter.<br>';
+                isValid = false;
+            }
+            if (passwordRules.requireNonAlphanumeric && !/[^a-zA-Z0-9\s]/.test(this.value)) {
+                errorMessage += 'Password must contain a non-alphanumeric character.<br>';
+                isValid = false;
+            }
+            if (passwordRules.requireUppercase && !/[A-Z]/.test(this.value)) {
+                errorMessage += 'Password must contain an uppercase letter.<br>';
+                isValid = false;
+            }
+            if (this.value.length < passwordRules.minLength) {
+                errorMessage += `Password must be at least ${passwordRules.minLength} characters long.`;
+                isValid = false;
+            }
+
+            if (isValid) {
+                passwordError.style.display = 'none';
+            } else {
+                passwordError.innerHTML = errorMessage;
+                passwordError.style.display = 'block';
+            }
+        }
+
+        passwordInput.addEventListener('input', validatePassword);
+
+        confirmPasswordInput.addEventListener('input', function () {
+            if (this.value === passwordInput.value) {
+                confirmPasswordError.style.display = 'none';
+            } else {
+                confirmPasswordError.innerHTML = 'Passwords do not match.';
+                confirmPasswordError.style.display = 'block';
+            }
+        });
+    </script>
+}

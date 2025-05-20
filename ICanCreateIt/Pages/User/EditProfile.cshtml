@@ -1,0 +1,19 @@
+﻿@page
+@model ICanCreateIt.Pages.User.EditProfileModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+@*At the EditProfile page can change name and address could be changed in future change password, email etc.*@
+<h2>Edit Your Profile</h2>
+
+<form method="post">
+    <div>
+        <label>Display Name</label>
+        <input asp-for="DisplayName" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" />
+    </div>
+    <button type="submit">Save Changes</button>
+</form>

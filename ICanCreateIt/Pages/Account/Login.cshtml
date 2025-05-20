@@ -1,0 +1,34 @@
+﻿@page
+@model ICanCreateIt.Pages.Account.LoginModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+@*Login page where user input password and email can go to their own dashboard
+In the future they can add something like nickname or username instead of email 
+*@
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="Input.Email"></label>
+        <input asp-for="Input.Email" />
+        <span asp-validation-for="Input.Email"></span>
+    </div>
+    <div>
+        @*passwords are increapted and kept in database 
+            In future need to add forgot password to recover password if user forget it
+        *@
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password" type="password" />
+        <span asp-validation-for="Input.Password"></span>
+    </div>
+    <div>
+        <input asp-for="Input.RememberMe" type="checkbox" /> Remember me
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+
+    ViewData["Title"] = "Home - ICanCreateIt";
+}
+
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+@if (TempData["LogoutMessage"] != null)
+{
+    <div class="alert alert-info text-center" role="alert">
+        @TempData["LogoutMessage"]
+    </div>
+}
+
+<div class="text-center my-4">
+    <h1 class="display-4 text-primary">Create It. Show It.</h1>
+    <p class="lead">Browse creative work shared by our community.</p>
+</div>
+
+<div class="row">
+    @foreach (var image in Model.PublishedImages)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <img src="@image.FilePath" class="card-img-top" alt="User creation">
+                <div class="card-body">
+                    <p class="card-text">@image.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

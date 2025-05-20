@@ -1,0 +1,42 @@
+﻿@page
+@model ICanCreateIt.Pages.User.ManageImagesModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+@foreach (var image in Model.Images)
+{
+    <div class="image-management-container">
+        <img src="@image.FilePath" alt="@image.Description" />
+        <div class="image-details">
+            <p>@image.Description</p>
+            <div class="image-actions">
+
+                <!-- Publish/Unpublish images by pressing the button user can publish or unpublish downloaded images -->
+                <form method="post" asp-page-handler="TogglePublish" asp-route-id="@image.Id">
+                    <button type="submit">@(image.IsPublished ? "Unpublish" : "Publish")</button>
+                </form>
+
+                <!-- Update description button can change image description if needed-->
+                <form method="post" asp-page-handler="UpdateDescription" asp-route-id="@image.Id">
+                    <input type="text" name="NewDescription" value="@image.Description" />
+                    <button type="submit">Update</button>
+                </form>
+
+                <!-- Change Image button can change image for the different one -->
+                <form method="post" asp-page-handler="ChangeImage" asp-route-id="@image.Id" enctype="multipart/form-data">
+                    <input type="file" name="NewImage" />
+                    <button type="submit">Change</button>
+                </form>
+
+                <!-- Delete button will delete image  -->
+                <form method="post" asp-page-handler="Delete" asp-route-id="@image.Id">
+                    <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

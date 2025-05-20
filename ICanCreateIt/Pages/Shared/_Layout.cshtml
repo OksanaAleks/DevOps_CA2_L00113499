@@ -1,0 +1,68 @@
+﻿@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ICanCreateIt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <style>
+      .navbar-brand img {
+        width: 160px;
+        height: auto;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #a0f0e0;">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-page="/Index">
+                    <img src="~/images/Logo3.png" alt="Logo" class="me-3" />
+                    <span class="fs-2 fw-bold text-dark">ICanCreateIt</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark mx-1 px-3" asp-page="/Index">Home</a>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-dark mx-1 px-3" asp-page="/User/Index">My Page</a>
+                            </li>
+                            @* User-Specific Navigation Section *@
+                            @RenderSection("UserNav", required: false)
+                            <li class="nav-item">
+                                <form method="post" asp-page="/Account/Logout" class="d-inline">
+                                    <button type="submit" class="btn btn-danger mx-1 px-3">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-success mx-1 px-3" asp-page="/Account/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary mx-1 px-3" asp-page="/Account/Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container mt-4">
+        @RenderBody()
+    </main>
+    <footer class="bg-dark text-center text-light p-3 mt-4">
+        © @DateTime.Now.Year - ICanCreateIt
+    </footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

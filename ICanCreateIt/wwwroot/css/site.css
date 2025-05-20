@@ -1,0 +1,323 @@
+body {
+    background-color: #181818; /* Dark grey background color  */
+    color: #f0f0f0; /* Light grey text */
+    font-family: sans-serif; /*font */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* the body takes up at least the full viewport height */
+    margin: 0; /*this part will remove default body margin */
+}
+h1.display-4 {
+    color: #64b5f6; /* A blue color */
+}
+
+
+.navbar-nav {
+    display: flex; /* Display the nav items horizontally */
+    margin-left: auto; /* Push them to the right */
+}
+
+    .navbar-nav .nav-item {
+        margin-left: 1rem; /* Adding some spacing between items */
+    }
+
+/* Style for the buttons on nav bar */
+.navbar .nav-link.btn {
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem; /* Makes more rounded buttons */
+    color: #f0f0f0 !important;
+    background-color: transparent; /* Transparent background */
+    border: 2px solid #64b5f6; /* Blue border for the buttons*/
+    padding: 0.5rem 1rem; /* Adjust padding inside butttons */
+    transition: background-color 0.3s ease, color 0.3s ease; /* hover transition */
+}
+
+    .navbar .nav-link.btn:hover {
+        background-color: #64b5f6; /* Blue hover background */
+        color: #2c2c2c !important; /* Dark text on hover */
+        border-color: #64b5f6; /* Keep the blue border */
+    }
+
+footer {
+    background-color: #333; /* Dark footer keeping tthe design same as header*/
+    color: #ccc;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+/*style for the rows */
+
+.row {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+    .row > div {
+        width: calc(25% - 20px);
+        margin-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+/*applying somestyle for the images which user will upload*/
+.card {
+    height: 100%;/*keep same hight for every image*/
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #444; /*  border for images */
+    background-color: #333; /* Dark image background */
+    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+/*images will be bit bigger while user hover on image*/
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+    }
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: opacity 0.2s ease-in-out; 
+}
+
+.card-body {
+    flex-grow: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-text {
+    font-size: 1.5rem;
+    color: #ddd;
+}
+form {
+    background-color: #2c2c2c; /* Dark background for the form to keep design same color*/
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    width: 400px; /* Adjust width as needed */
+    max-width: 90%; /* Ensure it doesn't get too wide on smaller screens */
+}
+    form > div {
+        margin-bottom: 1.2rem;
+    }
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ddd;
+    font-weight: bold;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #444;
+    border-radius: 0.3rem;
+    background-color: #333;
+    color: #f0f0f0;
+    box-sizing: border-box; 
+}
+
+select {
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23f0f0f0" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1em;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+span[asp-validation-for] {
+    color: #ff6ddb; /* colour for validation errors */
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+/*design for submit button*/
+button[type="submit"] {
+    background-color: #64b5f6; /* Blue colourd button background */
+    color: #2c2c2c; /* Dark text on button */
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make the button full width */
+}
+
+    button[type="submit"]:hover {
+        background-color: #90caf9;
+    }
+.text-danger {
+    color: #ff6ddb !important; /* Consistent color for script-based errors */
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+footer {
+    background-color: #333; /* Darker footer to keep same design for all project*/
+    color: #ccc;
+    padding: 1.5rem 0;
+    text-align: center;
+}/*some style for images uploaded by user*/
+.user-image-container {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+    .user-image-container img {
+        width: 150px;
+        border-radius: 0.3rem;
+        object-fit: cover;
+    }
+
+.user-image-details {
+    flex: 1;
+    min-width: 250px;
+}
+
+    .user-image-details p {
+        margin: 0 0 0.5rem 0;
+        color: #ddd;
+    }
+
+/*style for the buttons in ManageImage Page*/
+.image-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+    .image-action-buttons form {
+        padding: 0;
+        background: none;
+        box-shadow: none;
+        width: auto;
+        display: inline;
+    }
+
+    .image-action-buttons button {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 0.4rem;
+        border: 1px solid #64b5f6;
+        background-color: transparent;
+        color: #64b5f6;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+        .image-action-buttons button:hover {
+            background-color: #64b5f6;
+            color: #2c2c2c;
+        }
+.image-management-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+    .image-management-container img {
+        width: 150px;
+        border-radius: 0.3rem;
+        object-fit: cover;
+    }
+
+.image-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+    .image-details p {
+        margin: 0;
+        color: #f0f0f0;
+        font-weight: bold;
+    }
+
+.image-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+    .image-actions form {
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        width: auto;
+    }
+
+    .image-actions button,
+    .image-actions input[type="text"],
+    .image-actions input[type="file"] {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+        border-radius: 0.3rem;
+        background-color: #64b5f6;
+        color: #2c2c2c;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+        .image-actions button:hover {
+            background-color: #90caf9;
+        }
+
+    .image-actions input[type="text"],
+    .image-actions input[type="file"] {
+        background-color: #333;
+        color: #f0f0f0;
+        border: 1px solid #444;
+        margin-right: 0.5rem;
+    }
+
+    .image-actions input[type="file"] {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+
+@media (max-width: 768px) {
+    .image-management-container {
+        flex-direction: column;
+    }
+}
+
+/*.user-logout-button {*/
+
+    /*margin-left: 1rem;*/ /* Add spacing to the left of the button */
+/*}*/
