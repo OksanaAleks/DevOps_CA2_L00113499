@@ -1,0 +1,40 @@
+name: Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x']
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run Tests and Generate Report
+        uses: zyborg/dotnet-tests-report@v1
+        with:
+          
+          project_path: ICanCreateIt.Tests/ICanCreateIt.Tests.csproj
+          report_name: Test Report (${{ matrix.os }} / .NET ${{ matrix.dotnet-version }})
+          report_title: ICanCreateIt Tests - ${{ matrix.os }} (.NET ${{ matrix.dotnet-version }})
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      
